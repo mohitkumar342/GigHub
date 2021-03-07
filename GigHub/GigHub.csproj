@@ -177,8 +177,19 @@
     <Compile Include="Migrations\202103071439321_InitialModel.Designer.cs">
       <DependentUpon>202103071439321_InitialModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202103071616542_AddGigAndGenreTable.cs" />
+    <Compile Include="Migrations\202103071616542_AddGigAndGenreTable.Designer.cs">
+      <DependentUpon>202103071616542_AddGigAndGenreTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103071624310_OverrideCOnventionsForGigsAndGenres.cs" />
+    <Compile Include="Migrations\202103071624310_OverrideCOnventionsForGigsAndGenres.Designer.cs">
+      <DependentUpon>202103071624310_OverrideCOnventionsForGigsAndGenres.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ApplicationDbContext.cs" />
+    <Compile Include="Models\Genre.cs" />
+    <Compile Include="Models\Gig.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -260,6 +271,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202103071439321_InitialModel.resx">
       <DependentUpon>202103071439321_InitialModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103071616542_AddGigAndGenreTable.resx">
+      <DependentUpon>202103071616542_AddGigAndGenreTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103071624310_OverrideCOnventionsForGigsAndGenres.resx">
+      <DependentUpon>202103071624310_OverrideCOnventionsForGigsAndGenres.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
