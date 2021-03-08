@@ -4,7 +4,7 @@ namespace GigHub.Models
 {
     public class Genre
     {
-        public int ID { get; set; }
+        public byte ID { get; set; }
 
         [Required]
         [StringLength(255)]
