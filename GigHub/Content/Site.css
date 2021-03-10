@@ -88,3 +88,54 @@ label {
     font-weight: 700;
     font-size: x-large;
 }
+
+/*Page level style*/
+
+.gigs{
+    list-style:none;
+    padding:2px 200px;
+}
+
+.gigs > li
+{
+    position:relative;
+    margin-bottom: 30px;
+    
+}
+
+ .gigs > li .date {
+        background-color: red;
+        width: 50px;
+        padding: 2px;
+        text-align: center;
+        border-radius:5px;
+ }
+
+.gigs > li .date .month {
+        text-transform: uppercase;
+        color: white;
+        font-weight: bold;
+        padding: 2px;
+}
+
+.gigs > li .date .day {
+        font-size:medium;
+        font-weight: bold;
+        padding: 2px;
+        background-color:white;
+}
+
+.gigs > li .details {
+
+    position:absolute;
+    top:0;
+    left:70px
+}
+
+    .gigs > li .details .artist{
+        font-weight:bold;
+    }
+
+    .gigs > li .details .genre {
+    padding-top:5px;
+    }
