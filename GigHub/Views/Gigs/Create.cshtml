@@ -5,6 +5,7 @@
 
 <h2>Add a Gig</h2>
 
+@Html.AntiForgeryToken()
 @using (Html.BeginForm("Create", "Gigs"))
 {
     <div class="form-group">
@@ -31,6 +32,6 @@
 
 }
 
-@*@section scripts{
+@section scripts{
 @Scripts.Render("~/bundles/jqueryval")
-}*@ 
+} 
