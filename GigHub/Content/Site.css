@@ -70,8 +70,8 @@ label {
 }
 
 .btn{
-    padding : 8px 18px;
-    font-size: 15px;
+    /*padding : 8px 18px;
+    font-size: 15px;*/
     border-radius:8px;
 }
 
@@ -129,7 +129,8 @@ label {
 
     position:absolute;
     top:0;
-    left:70px
+    left:70px;
+    right: 500px;
 }
 
     .gigs > li .details .artist{

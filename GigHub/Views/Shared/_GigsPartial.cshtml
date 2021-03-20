@@ -1,0 +1,23 @@
+﻿<ul class="gigs">
+    @foreach (var gig in Model.Gigs)
+    {
+        <li>
+            <div class="date">
+                <div class="month">@gig.DateTime.ToString("MMM")</div>
+                <div class="day">@gig.DateTime.ToString("d ")</div>
+            </div>
+            <div class="details">
+                <span class="artist">@gig.Artist.Name</span>
+                @if (Model.IsLoggedIn)
+                {
+                    <a data-artist-id="@gig.ArtistId" href="#" class="pull-right js-link-addfollower">Follow</a> <br />
+                }<br />
+                <span class="genre">@gig.Genre.Name</span>
+                @if (Model.IsLoggedIn)
+                {
+                    <button data-gig-id="@gig.Id" class="btn btn-default btn-sm pull-right js-toggle-attendance">Going?</button>
+                }
+            </div>
+        </li>
+    }
+</ul>

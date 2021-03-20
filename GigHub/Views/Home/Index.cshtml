@@ -1,22 +1,62 @@
 ﻿
-@model IEnumerable<GigHub.Models.Gig> 
+@model GigHub.ViewModels.GigsViewModel
 @{
     ViewBag.Title = "Home Page";
 }
 
 <h3>Upcoming Gigs :</h3>
-<ul class="gigs">
-    @foreach (var gig in Model)
-    {
-    <li>
-        <div class="date">
-            <div class="month">@gig.DateTime.ToString("MMM")</div>
-            <div class="day">@gig.DateTime.ToString("d ")</div>
-        </div>
-        <div class="details">
-            <div class="artist">@gig.Artist.Name</div>
-            <div class="genre">@gig.Genre.Name</div>
-        </div>
-    </li>
-    }
-</ul>
+
+@{
+    Html.RenderPartial("_GigsPartial", Model);
+}
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $(".js-toggle-attendance").click(function (e) {
+                var button = $(e.target);
+                $.post("/api/attendances", { "": button.attr("data-gig-id") })
+                    .done(function () {
+                        button
+                            .removeClass("btn=default")
+                            .addClass("btn-info")
+                            .text("Going")
+                    })
+                    .fail(function () {
+                        alert("API failed!")
+                    });
+            });
+        });
+
+
+        $(".js-link-addfollower").click(
+            function (e) {
+                var link = $(e.target);
+                $.post("/api/follow/AddFollower", { "": link.attr("data-artist-id") })
+                    .done(function () {
+                        link.text("Unfollow")
+                    })
+                    .fail(function () {
+                        link.text("Following");
+                        alert("Follow API returned False!")
+                    });
+
+            }
+        );
+
+            //function addFollower (string artistId) {
+            //        //var button = $(e.target);
+            //    $.post("/api/follow/AddFollower", { "": $(e.target).attr("data-artist-id") })
+            //            .done(function () {
+            //                $(e.target).text("Unfollow")
+            //            })
+            //            .fail(function () {
+            //                $(e.target).text("Following");
+            //                alert("Follow API returned False!")
+            //            });
+            //};
+
+    </script>
+
+}

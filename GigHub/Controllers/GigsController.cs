@@ -1,7 +1,7 @@
 ﻿using GigHub.Models;
 using GigHub.ViewModels;
 using Microsoft.AspNet.Identity;
-using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -27,7 +27,7 @@ namespace GigHub.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(GigFormViewModel viewModel)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 viewModel.Genres = _context.Genres.ToList();
                 return View(viewModel);
@@ -42,6 +42,27 @@ namespace GigHub.Controllers
             _context.Gigs.Add(gig);
             _context.SaveChanges();
             return RedirectToAction("Index", "Home");
+        }
+
+        [Authorize]
+        public ActionResult Attending()
+        {
+            var user = User.Identity.GetUserId();
+            var gigs = _context.Attendances                
+                .Where(x => x.AttendeeId == user)                
+                .Select(a => a.Gig)
+                .Include(x => x.Artist)
+                .Include(x => x.Genre)
+                .ToList();
+
+            var gigsViewModel = new GigsViewModel()
+            {
+                Gigs = gigs,
+                IsLoggedIn = User.Identity.IsAuthenticated
+            };
+
+            return View(gigsViewModel);
+
         }
     }
 }
