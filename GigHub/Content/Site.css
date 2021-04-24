@@ -133,10 +133,21 @@ label {
     right: 500px;
 }
 
-    .gigs > li .details .artist{
+.gigs > li .details .artist{
         font-weight:bold;
+
+}
+
+.gigs > li .details .genre {
+    padding-top:5px;
     }
 
-    .gigs > li .details .genre {
-    padding-top:5px;
+.gigs > li .action{
+    display:none;
+    font-size: small;
+}
+
+.gigs > li:hover .action {
+        display: block;
+        font-size: small;
     }
