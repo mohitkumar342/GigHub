@@ -5,6 +5,8 @@
 
 <h2>My Upcoming Gigs</h2>
 
+
+
 <ul class="gigs">
     @foreach (var gig in Model)
     {
@@ -14,14 +16,62 @@
                 <div class="day">@gig.DateTime.ToString("d ")</div>
             </div>
             <div class="details">
-                <span class="artist">@gig.Venue</span>               
-                  
+                <span class="artist">@gig.Venue</span>
+
                 <br />
                 <span class="genre">@gig.Genre.Name</span>
                 <div class="action">
-                    <a href="@Url.Action("Edit","Gigs", new { id = gig.Id})">Edit</a>
+                    <a href="@Url.Action("Edit","Gigs", new { id = gig.Id})">Edit</a> |
+                    <a href="#" class="js-cancel-gig" data-gig-id="@gig.Id">Cancel</a>
+                    @*<button class="btn btn-default btn-sm js-cancel-gig" data-gig-id="@gig.Id">Cancel</button>*@
                 </div>
             </div>
         </li>
     }
 </ul>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $(".js-cancel-gig").click(function (e) {
+                var link = $(e.target);
+
+                bootbox.dialog({
+                    message: "Are you sure you want to delete?",
+                    title: "Confirm",
+                    buttons: {
+                        success: {
+                            label: "Cancel",
+                            className: "btn-default",
+
+                        },
+                        danger: {
+                            label: "Delete",
+                            className: "btn-danger",
+                            callback: function () {
+                                $.ajax({
+                                    url: "/api/gigs/" + link.attr("data-gig-id"),
+                                    method: "DELETE"
+                                })
+                                    .done(function () {
+                                        link.parents("li").fadeOut(function () {
+                                            $(this).remove();
+                                        })
+                                    })
+                                    .fail(function () {
+                                        alert("Some Error occured");
+                                    }
+                                    )
+                            }
+
+                        }
+                    }
+
+                });
+
+            });
+        });
+    </script>
+
+}

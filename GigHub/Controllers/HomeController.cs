@@ -21,7 +21,7 @@ namespace GigHub.Controllers
             var upComingGigs = _context.Gigs
                 .Include(g => g.Artist)
                 .Include(m => m.Genre)
-                .Where(g => g.DateTime > DateTime.Now).ToList();
+                .Where(g => g.DateTime > DateTime.Now && g.IsCancelled==false).ToList();
 
             var isLoggedIn = User.Identity.IsAuthenticated;
             var viewModel = new GigsViewModel()

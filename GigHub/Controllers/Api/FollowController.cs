@@ -3,7 +3,7 @@ using Microsoft.AspNet.Identity;
 using System.Linq;
 using System.Web.Http;
 
-namespace GigHub.Controllers
+namespace GigHub.Controllers.Api
 {
     [Authorize]
     public class FollowController : ApiController
@@ -13,7 +13,7 @@ namespace GigHub.Controllers
         {
             _context = new ApplicationDbContext();
         }
-        public IHttpActionResult AddFollower([FromBody]string Followee)
+        public IHttpActionResult AddFollower([FromBody] string Followee)
         {
             var loggedInUser = User.Identity.GetUserId();
             var exists = _context.Follows.Any(f => f.FolloweeId == Followee && f.FollowerId == loggedInUser);

@@ -3,7 +3,7 @@ using Microsoft.AspNet.Identity;
 using System.Linq;
 using System.Web.Http;
 
-namespace GigHub.Controllers
+namespace GigHub.Controllers.Api
 {
     [Authorize]
     public class AttendancesController : ApiController
@@ -17,7 +17,7 @@ namespace GigHub.Controllers
         [HttpPost]
         public IHttpActionResult Attend([FromBody] int gigId)
         {
-            
+
             var userID = User.Identity.GetUserId();
             var exists = _context.Attendances.Any(a => a.AttendeeId == userID && a.GigId == gigId);
             if (exists)
